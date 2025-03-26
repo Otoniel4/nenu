@@ -17,8 +17,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     surpriseBtn.addEventListener('click', function() {
         hiddenMessage.style.display = 'block';
-        createConfetti();
-        this.textContent = '¡Sorpresa! 🎁';
+        
+
+
+        
         
         // Cambiar color de fondo
         document.body.style.background = 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)';
