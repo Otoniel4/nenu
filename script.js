@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
 
 
-        
+
         
         // Cambiar color de fondo
         document.body.style.background = 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)';
@@ -91,4 +91,13 @@ document.addEventListener('DOMContentLoaded', function() {
             confettiContainer.appendChild(confetti);
         }
     }
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const surpriseBtn = document.getElementById('surpriseBtn');
+    const hiddenMessage = document.getElementById('hiddenMessage');
+    
+    surpriseBtn.addEventListener('click', function() {
+        hiddenMessage.style.display = 'block';
+        this.style.display = 'none';
+    });
 });

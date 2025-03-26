@@ -1,14 +1,20 @@
-/* Nuevos estilos para el layout */
+body {
+    margin: 0;
+    padding: 20px;
+    background: white;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
 .layout-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    position: relative;
-    z-index: 1;
 }
 
 .main-content {
@@ -18,43 +24,64 @@
     text-align: center;
 }
 
+h1 {
+    font-family: 'Pacifico', cursive;
+    color: #d23669;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.name {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: #ff4757;
+    margin: 15px 0;
+}
+
+.message, .hidden-message {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.hidden-message {
+    display: none;
+}
+
+.button {
+    background: #ff4757;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background: #ff6b81;
+}
+
 .photo-container {
-    width: 250px;
-    height: 350px;
-    margin: 0 10px;
-    perspective: 1000px;
+    width: 200px;
+    height: 300px;
+    margin: 0 15px;
     position: relative;
-}
-
-.left-photo {
-    margin-right: auto;
-}
-
-.right-photo {
-    margin-left: auto;
 }
 
 .birthday-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    transition: all 0.5s ease;
-    border: 5px solid white;
-    transform: rotateY(0deg);
-}
-
-.left-photo .birthday-photo {
-    transform-origin: left;
-}
-
-.right-photo .birthday-photo {
-    transform-origin: right;
-}
-
-.photo-container:hover .birthday-photo {
-    transform: rotateY(15deg) scale(1.05);
+    border-radius: 10px;
+    border: 3px solid #eee;
 }
 
 .photo-caption {
@@ -63,36 +90,29 @@
     left: 0;
     right: 0;
     text-align: center;
-    background: rgba(255, 105, 180, 0.8);
+    background: rgba(255, 105, 180, 0.9);
     color: white;
-    padding: 10px;
+    padding: 8px;
     font-family: 'Dancing Script', cursive;
-    font-size: 1.5rem;
-    border-radius: 0 0 10px 10px;
-    transform: translateY(20px);
-    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    border-radius: 0 0 7px 7px;
 }
 
-.photo-container:hover .photo-caption {
-    transform: translateY(0);
-    background: rgba(255, 20, 147, 0.9);
-}
-
-/* Ajustes responsive */
-@media (max-width: 900px) {
+/* Responsive */
+@media (max-width: 768px) {
     .layout-container {
         flex-direction: column;
     }
     
     .photo-container {
-        width: 200px;
-        height: 300px;
         margin: 20px auto;
     }
     
-    .left-photo, .right-photo {
-        margin: 20px auto;
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .name {
+        font-size: 2.5rem;
     }
 }
-
-/* Mantén todos los demás estilos que ya tenías */
