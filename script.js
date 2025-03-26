@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
- 
+    // [...] (resto del código existente)
 });
 document.getElementById('surpriseBtn').addEventListener('click', function() {
     const hiddenMessage = document.getElementById('hiddenMessage');
@@ -144,5 +144,7 @@ document.getElementById('surpriseBtn').addEventListener('click', function() {
             hiddenMessage.style.transform = 'scale(1)';
         }, 300);
     }, 3000);
+    
 });
+
 
