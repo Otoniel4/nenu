@@ -241,3 +241,108 @@ h1 {
         opacity: 0; 
     }
 }
+/* Estilo base para ambos mensajes */
+.animated-message, .animated-hidden-message {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    margin: 25px auto;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+/* Efecto de borde animado */
+.animated-message::before, .animated-hidden-message::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #ff6b81, #ff4757, #ff6b81);
+    background-size: 200% 100%;
+    animation: gradientMove 3s linear infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+/* Contenido del mensaje */
+.message-content {
+    position: relative;
+    z-index: 2;
+}
+
+.message-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Mensaje oculto con efectos especiales */
+.animated-hidden-message {
+    display: none;
+    background: linear-gradient(135deg, #fff9f9 0%, #ffffff 100%);
+    border: 2px solid #ffebee;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.animated-hidden-message.show {
+    display: block;
+    animation: messagePopIn 0.6s forwards;
+}
+
+@keyframes messagePopIn {
+    0% { transform: scale(0.9); opacity: 0; }
+    70% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Lista especial */
+.special-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.special-list li {
+    margin: 10px 0;
+    padding: 8px 15px;
+    background: rgba(255, 107, 129, 0.1);
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.special-list li:hover {
+    background: rgba(255, 107, 129, 0.2);
+    transform: translateX(10px);
+}
+
+.special-list span {
+    margin-right: 15px;
+    font-size: 1.3rem;
+}
+
+/* Firma */
+.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: #ff4757;
+    margin-top: 20px;
+    text-align: right;
+    animation: pulse 2s infinite;
+}

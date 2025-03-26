@@ -120,5 +120,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // [...] (resto del código existente)
+ 
 });
+document.getElementById('surpriseBtn').addEventListener('click', function() {
+    const hiddenMessage = document.getElementById('hiddenMessage');
+    
+    // 1. Crear confeti (usando tu función existente)
+    createConfetti();
+    
+    // 2. Animación del mensaje
+    hiddenMessage.classList.add('show');
+    
+    // 3. Cambiar fondo (opcional)
+    document.body.style.background = 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)';
+    
+    // 4. Ocultar botón después de click
+    this.style.display = 'none';
+    
+    // 5. Efecto de latido continuo en el mensaje
+    setInterval(() => {
+        hiddenMessage.style.transform = 'scale(1.02)';
+        setTimeout(() => {
+            hiddenMessage.style.transform = 'scale(1)';
+        }, 300);
+    }, 3000);
+});
+
