@@ -1,150 +1,87 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Crear corazones flotantes
-    const heartsContainer = document.getElementById('hearts');
-    for (let i = 0; i < 20; i++) {
-        createHeart();
+document.getElementById('surpriseBtn').addEventListener('click', function() {
+    // 1. Mostrar mensaje oculto
+    document.getElementById('hiddenMessage').style.display = 'block';
+    
+    // 2. Activar fondo morado
+    document.body.classList.add('purple-bg');
+    
+    // 3. Configurar canvas
+    const canvas = document.getElementById('confetti-canvas');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+    
+    // 4. Configuración de partículas
+    const colors = ['#ff6b81', '#ff4757', '#ffb8c6', '#ff9ff3', '#feca57', '#e84393'];
+    const particles = [];
+    const particleCount = 200; // Cantidad de partículas
+    
+    // Crear partículas
+    for (let i = 0; i < particleCount; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * -canvas.height,
+            size: Math.random() * 12 + 8,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            speed: Math.random() * 3 + 2,
+            angle: 0,
+            rotation: Math.random() * 0.2 - 0.1,
+            drift: Math.random() * 2 - 1
+        });
     }
     
-    // Crear globos
-    const balloonsContainer = document.getElementById('balloons');
-    for (let i = 0; i < 10; i++) {
-        createBalloon();
-    }
+    // 5. Animación
+    let startTime = Date.now();
+    const duration = 30000; // 30 segundos
     
-    // Botón de sorpresa
-    const surpriseBtn = document.getElementById('surpriseBtn');
-    const hiddenMessage = document.getElementById('hiddenMessage');
-    
-    surpriseBtn.addEventListener('click', function() {
-        hiddenMessage.style.display = 'block';
-        document.body.style.background = 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)';
+    function animate() {
+        // Limpiar canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         
-        // Agregar más corazones
-        for (let i = 0; i < 30; i++) {
-            setTimeout(createHeart, i * 100);
-        }
-        
-        // Crear confeti
-        createConfetti();
-    });
-    
-    function createHeart() {
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-        heart.innerHTML = '❤';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = 4 + Math.random() * 6 + 's';
-        heart.style.animationDelay = Math.random() * 5 + 's';
-        heartsContainer.appendChild(heart);
-        
-        setTimeout(() => {
-            heart.remove();
-        }, 10000);
-    }
-    
-    function createBalloon() {
-        const balloon = document.createElement('div');
-        balloon.className = 'balloon';
-        balloon.style.left = Math.random() * 100 + 'vw';
-        balloon.style.animationDuration = 6 + Math.random() * 10 + 's';
-        balloon.style.animationDelay = Math.random() * 5 + 's';
-        balloon.style.backgroundColor = ['#ff6b81', '#ff4757', '#ff6348', '#ffa502', '#eccc68'][Math.floor(Math.random() * 5)];
-        balloonsContainer.appendChild(balloon);
-        
-        setTimeout(() => {
-            balloon.remove();
-        }, 15000);
-    }
-    
-    function createConfetti() {
-        const confettiContainer = document.getElementById('confetti');
-        confettiContainer.innerHTML = '';
-        
-        for (let i = 0; i < 100; i++) {
-            const confetti = document.createElement('div');
-            confetti.className = 'confetti';
-            confetti.style.left = Math.random() * 100 + 'vw';
-            confetti.style.animationDuration = 3 + Math.random() * 4 + 's';
-            confetti.style.animationDelay = Math.random() * 2 + 's';
-            confetti.style.backgroundColor = ['#ff4757', '#ff6b81', '#ffa502', '#2ed573', '#1e90ff'][Math.floor(Math.random() * 5)];
-            confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-            confettiContainer.appendChild(confetti);
-        }
-    }
-});
-document.addEventListener('DOMContentLoaded', function() {
-    // [...] (mantén todo el código existente)
-    
-    // Botón de sorpresa (versión corregida)
-    const surpriseBtn = document.getElementById('surpriseBtn');
-    const hiddenMessage = document.getElementById('hiddenMessage');
-    
-    surpriseBtn.addEventListener('click', function() {
-        hiddenMessage.style.display = 'block';
-        this.style.display = 'none'; // Opcional: oculta el botón después de click
-        
-        // Activa confeti (nuevo código)
-        createConfetti();
-        
-        // Cambio de fondo (opcional)
-        document.body.style.background = 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)';
-    });
-    
-    // Función de confeti (asegúrate que existe)
-    function createConfetti() {
-        const confettiContainer = document.getElementById('confetti');
-        confettiContainer.innerHTML = '';
-        
-        for (let i = 0; i < 150; i++) {
-            const confetti = document.createElement('div');
-            confetti.className = 'confetti';
-            confetti.style.left = Math.random() * 100 + 'vw';
-            confetti.style.animationDuration = 3 + Math.random() * 4 + 's';
-            confetti.style.animationDelay = Math.random() * 2 + 's';
+        // Dibujar partículas
+        particles.forEach(p => {
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.angle);
+            ctx.fillStyle = p.color;
             
-            // Colores aleatorios
-            const colors = ['#ff4757', '#ff6b81', '#ffa502', '#2ed573', '#1e90ff', '#5352ed'];
-            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            // Forma de confeti rectangular
+            ctx.fillRect(-p.size/2, -p.size/3, p.size, p.size/1.5);
             
-            // Formas
-            confetti.style.width = Math.random() * 15 + 5 + 'px';
-            confetti.style.height = Math.random() * 15 + 5 + 'px';
-            confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+            ctx.restore();
             
-            confettiContainer.appendChild(confetti);
+            // Actualizar posición
+            p.y += p.speed;
+            p.x += p.drift;
+            p.angle += p.rotation;
             
-            // Eliminar después de animación
-            setTimeout(() => {
-                confetti.remove();
-            }, 5000);
+            // Reiniciar posición si sale de la pantalla
+            if (p.y > canvas.height) {
+                p.y = -p.size;
+                p.x = Math.random() * canvas.width;
+            }
+        });
+        
+        // Continuar animación si no ha terminado el tiempo
+        if (Date.now() - startTime < duration) {
+            requestAnimationFrame(animate);
+        } else {
+            // Limpiar al finalizar
+            canvas.remove();
         }
     }
     
-    // [...] (resto del código existente)
+    // 6. Iniciar animación
+    animate();
+    
+    // 7. Actualizar botón
+    this.disabled = true;
+    this.textContent = '¡Feliz Cumpleaños! 🎉';
 });
 document.getElementById('surpriseBtn').addEventListener('click', function() {
-    const hiddenMessage = document.getElementById('hiddenMessage');
-    
-    // 1. Crear confeti (usando tu función existente)
-    createConfetti();
-    
-    // 2. Animación del mensaje
-    hiddenMessage.classList.add('show');
-    
-    // 3. Cambiar fondo (opcional)
-    document.body.style.background = 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)';
-    
-    // 4. Ocultar botón después de click
-    this.style.display = 'none';
-    
-    // 5. Efecto de latido continuo en el mensaje
-    setInterval(() => {
-        hiddenMessage.style.transform = 'scale(1.02)';
-        setTimeout(() => {
-            hiddenMessage.style.transform = 'scale(1)';
-        }, 300);
-    }, 3000);
-    
+    const sound = document.getElementById('birthdaySound');
+    sound.play().catch(error => {
+        alert("Haz clic otra vez para activar el audio");
+    });
+    this.textContent = '¡Que disfrutes tu día!';
 });
-
-

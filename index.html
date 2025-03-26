@@ -28,6 +28,10 @@
             </div>
             
             <button class="button" id="surpriseBtn">¡Haz clic para una sorpresa!</button>
+            <audio id="birthdaySound" preload="auto">
+                <source src="cumpleaños.mp3" type="audio/mpeg">
+            </audio>
+           
             
             <div class="hidden-message" id="hiddenMessage">
                 🎉🎈🎁<br><br>
@@ -46,11 +50,9 @@
         </div>
     </div>
 
-    <!-- Elementos decorativos -->
-    <div class="hearts" id="hearts"></div>
-    <div class="balloons" id="balloons"></div>
-    <div id="confetti"></div>
+    <canvas id="confetti-canvas"></canvas>
 
     <script src="script.js"></script>
+    
 </body>
 </html>
