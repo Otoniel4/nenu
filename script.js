@@ -72,3 +72,53 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+document.addEventListener('DOMContentLoaded', function() {
+    // [...] (mantén todo el código existente)
+    
+    // Botón de sorpresa (versión corregida)
+    const surpriseBtn = document.getElementById('surpriseBtn');
+    const hiddenMessage = document.getElementById('hiddenMessage');
+    
+    surpriseBtn.addEventListener('click', function() {
+        hiddenMessage.style.display = 'block';
+        this.style.display = 'none'; // Opcional: oculta el botón después de click
+        
+        // Activa confeti (nuevo código)
+        createConfetti();
+        
+        // Cambio de fondo (opcional)
+        document.body.style.background = 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)';
+    });
+    
+    // Función de confeti (asegúrate que existe)
+    function createConfetti() {
+        const confettiContainer = document.getElementById('confetti');
+        confettiContainer.innerHTML = '';
+        
+        for (let i = 0; i < 150; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.animationDuration = 3 + Math.random() * 4 + 's';
+            confetti.style.animationDelay = Math.random() * 2 + 's';
+            
+            // Colores aleatorios
+            const colors = ['#ff4757', '#ff6b81', '#ffa502', '#2ed573', '#1e90ff', '#5352ed'];
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Formas
+            confetti.style.width = Math.random() * 15 + 5 + 'px';
+            confetti.style.height = Math.random() * 15 + 5 + 'px';
+            confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+            
+            confettiContainer.appendChild(confetti);
+            
+            // Eliminar después de animación
+            setTimeout(() => {
+                confetti.remove();
+            }, 5000);
+        }
+    }
+    
+    // [...] (resto del código existente)
+});

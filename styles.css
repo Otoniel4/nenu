@@ -197,3 +197,47 @@ h1 {
         font-size: 3rem;
     }
 }
+.button {
+    background: linear-gradient(45deg, #ff6b81, #ff4757);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 30px;
+    box-shadow: 0 5px 15px rgba(255, 105, 129, 0.4);
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 105, 129, 0.6);
+    background: linear-gradient(45deg, #ff4757, #ff6b81);
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+.confetti {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    opacity: 1;
+    animation: confetti-fall 5s linear forwards;
+    z-index: 1000;
+}
+
+@keyframes confetti-fall {
+    0% { 
+        transform: translateY(-100px) rotate(0deg); 
+        opacity: 1; 
+    }
+    100% { 
+        transform: translateY(100vh) rotate(360deg); 
+        opacity: 0; 
+    }
+}
