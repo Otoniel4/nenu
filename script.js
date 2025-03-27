@@ -85,3 +85,21 @@ document.getElementById('surpriseBtn').addEventListener('click', function() {
     });
     this.textContent = '¡Que disfrutes tu día!';
 });
+
+document.querySelector('.message').addEventListener('mousemove', (e) => {
+    const spark = document.createElement('div');
+    spark.className = 'spark';
+    spark.style.left = `${e.clientX}px`;
+    spark.style.top = `${e.clientY}px`;
+    document.body.appendChild(spark);
+    setTimeout(() => spark.remove(), 1000);
+  });
+
+  document.querySelector('.age-badge').addEventListener('click', function() {
+    this.style.transform = 'rotate(360deg)';
+    setTimeout(() => {
+      this.style.transform = 'rotate(0deg)';
+    }, 1000);
+  });
+  
+  
